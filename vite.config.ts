@@ -12,7 +12,7 @@ export default defineConfig({
     minifyHtml(),
     injectHtml({
       data: {
-        title: 'タイトル',
+        title: 'vite react p5',
       },
       tags: [
         {
