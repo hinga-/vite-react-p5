@@ -1,10 +1,19 @@
+import { DefaultLayout } from 'components/Layouts';
+import { P5Canvas } from 'components/P5Canvas';
 import { makeNoise3D } from 'fast-simplex-noise';
 import { useControls } from 'leva';
-import { P5Instance, ReactP5Wrapper } from 'react-p5-wrapper';
+import { P5Instance } from 'react-p5-wrapper';
+
+type Props = {
+  count: number;
+  size: number;
+  amplitude: number;
+  frequency: number;
+};
 
 const noise3D = makeNoise3D(Math.random);
 
-const sketch = (p5: P5Instance) => {
+const sketch = (p5: P5Instance<Props>) => {
   const props = { count: 0, size: 0, amplitude: 0, frequency: 0 };
 
   p5.updateWithProps = ({ count, size, amplitude, frequency }) => {
@@ -15,7 +24,6 @@ const sketch = (p5: P5Instance) => {
   };
 
   p5.setup = () => {
-    // p5.frameRate(30);
     p5.createCanvas(p5.windowWidth, p5.windowHeight);
   };
 
@@ -56,7 +64,7 @@ const sketch = (p5: P5Instance) => {
 };
 
 const GridNoise = () => {
-  const { count, size, amplitude, frequency } = useControls({
+  const data = useControls({
     count: { value: 40, min: 1, max: 100, step: 1 },
     size: { value: 3, min: 0.1, max: 10, step: 0.1 },
     amplitude: { value: 1, min: 0, max: 1, step: 0.01 },
@@ -64,12 +72,9 @@ const GridNoise = () => {
   });
 
   return (
-    <div className="canvas">
-      <ReactP5Wrapper
-        sketch={sketch}
-        {...{ count, size, amplitude, frequency }}
-      />
-    </div>
+    <DefaultLayout>
+      <P5Canvas sketch={sketch} {...data} />
+    </DefaultLayout>
   );
 };
 

@@ -11,13 +11,15 @@
   },
   "dependencies": {
     "autoprefixer": "^10.4.0",
+    "clsx": "^1.1.1",
     "fast-simplex-noise": "^4.0.0",
     "leva": "^0.9.21",
     "postcss": "^8.3.11",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
-    "react-p5-wrapper": "^3.1.0",
-    "react-router-dom": "^6.2.1"
+    "react-p5-wrapper": "^3.3.0",
+    "react-router-dom": "^6.2.1",
+    "recoil": "^0.6.1"
   },
   "devDependencies": {
     "@types/node": "^16.11.11",
